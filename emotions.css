@@ -1,0 +1,518 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Audiowide", sans-serif;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+.page-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* PAGE INTRODUCTION */
+.star-wars {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  min-height: 100svh;
+  color: #feda4a;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 300%;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+  overflow: hidden;
+}
+
+.star-wars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(120px, 22svh, 220px);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.45)
+  );
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.crawl {
+  position: absolute;
+  top: 100%;
+  width: 70%;
+  max-width: 800px;
+  transform-origin: 50% 0%;
+  animation: crawl 150s linear forwards;
+}
+
+.crawl > .title {
+  font-size: 90%;
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+}
+
+.crawl > .title h1 {
+  margin: 0 0 clamp(32px, 8svh, 100px);
+  text-transform: uppercase;
+}
+
+@keyframes crawl {
+  0% {
+    top: 100%;
+    transform: rotateX(25deg) translateZ(0);
+  }
+
+  50% {
+    top: -6000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+.hp-paragraphe p {
+  margin-bottom: clamp(20px, 5svh, 60px);
+}
+
+.hp-title {
+  font-size: 160%;
+  text-align: center;
+  margin-bottom: clamp(24px, 6svh, 80px);
+  text-transform: uppercase;
+  font-family: "Audiowide", sans-serif;
+}
+
+.jedi-hp {
+  width: 100%;
+}
+
+/* PAGE LOVE */
+.love {
+  border: 2px solid black;
+  background: url("images/love-bg-3.png") no-repeat center / cover;
+  min-height: 100svh;
+  padding: clamp(24px, 4svh, 48px) clamp(16px, 3vw, 24px)
+    clamp(32px, 6svh, 64px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  perspective: 400px;
+  overflow: hidden;
+}
+
+.love::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: clamp(120px, 22svh, 220px);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.45)
+  );
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.love::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(100px, 18svh, 180px);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.75)
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.love-title {
+  color: black;
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(36px, 7svh, 70px);
+}
+
+.love-text {
+  margin: 0;
+  text-align: justify;
+}
+
+.love-gif {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(40vw, 32svh);
+  height: auto;
+  opacity: 0;
+  animation: gif-in 2s ease forwards;
+  animation-delay: 27s;
+}
+
+.crawl-love {
+  position: absolute;
+  top: 100%;
+  width: 55%;
+  max-width: 600px;
+  transform-origin: 50% 0%;
+  animation:
+    crawl-love 150s linear infinite,
+    fade-out 27s linear forwards;
+  opacity: 1;
+  animation-play-state: paused;
+}
+
+.love.is-active .crawl-love {
+  animation-play-state: running;
+}
+
+.crawl-love .love-text {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 160%;
+  font-weight: 600;
+  letter-spacing: 4px;
+  line-height: 150%;
+  color: #8e0e1a;
+}
+
+@keyframes crawl-love {
+  0% {
+    top: 100%;
+    transform: rotateX(25deg) translateZ(0);
+  }
+
+  50% {
+    top: -2000px;
+    transform: rotateX(25deg) translateZ(-1200px);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes freaky-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes gif-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 60%) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 60%) translateY(0);
+  }
+}
+
+.arrow-down-love {
+  margin-top: auto;
+  padding-top: clamp(8px, 2svh, 16px);
+  animation: up-down 3s infinite;
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  width: 100px;
+  height: 90px;
+  margin: -50px -45px;
+  animation: heartbeat 1s infinite;
+  animation-delay: var(--delay, 0s);
+  transform: translate(-50%, -50%) scale(var(--scale, 1)) rotate(-10deg);
+}
+
+.heart--right::before {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.heart--right::after {
+  left: 50px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart::before,
+.heart::after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: #8e0e1a;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1) rotate(-10deg);
+  }
+  8% {
+    transform: scale(0.7) rotate(-10deg);
+  }
+  17% {
+    transform: scale(1.5) rotate(-10deg);
+  }
+  25% {
+    transform: scale(0.7) rotate(-10deg);
+  }
+  87.5% {
+    transform: scale(0.7) rotate(-10deg);
+  }
+  100% {
+    transform: scale(1) rotate(-10deg);
+  }
+}
+
+/* PAGE DESIRE */
+
+.desire {
+  border: 2px solid black;
+  background: url("images/desire-bg-1.png") no-repeat center / cover;
+  min-height: 100svh;
+  padding: clamp(24px, 4svh, 48px) clamp(16px, 3vw, 24px)
+    clamp(32px, 6svh, 64px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  perspective: 400px;
+  overflow: hidden;
+}
+
+.desire::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: clamp(100px, 18svh, 180px);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.75)
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.desire-text {
+  margin: 0;
+  text-align: justify;
+}
+
+.arrow-down-desire {
+  margin-top: auto;
+  padding-top: clamp(8px, 2svh, 16px);
+  animation: up-down 3s infinite;
+}
+
+.crawl-desire {
+  position: absolute;
+  top: 100%;
+  width: 55%;
+  max-width: 600px;
+  transform-origin: 50% 0%;
+  animation:
+    crawl-love 170s linear infinite,
+    fade-out 45s linear forwards;
+  opacity: 1;
+  animation-play-state: paused;
+}
+
+.desire.is-active .crawl-desire {
+  animation-play-state: running;
+}
+
+.crawl-desire .desire-text {
+  font-size: 160%;
+  font-weight: 600;
+  letter-spacing: 4px;
+  line-height: 150%;
+  color: #8e0e1a;
+}
+
+.freaky-media {
+  position: absolute;
+  bottom: clamp(16px, 4svh, 40px);
+  width: min(28vw, 26svh);
+  height: auto;
+  opacity: 0;
+  animation: freaky-in 1.6s ease forwards;
+  animation-delay: 40s;
+  z-index: 2;
+}
+
+.freaky-left {
+  left: 6%;
+  transform: rotate(-8deg);
+}
+
+.freaky-right {
+  right: 6%;
+  transform: rotate(8deg);
+}
+
+.dark-fire {
+  margin: clamp(20px, 5svh, 50px) auto;
+  width: 80%;
+  max-width: 1000px;
+  height: clamp(120px, 20svh, 200px);
+
+  background-position: center center;
+  background-size: 1000px 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+}
+.dark-fire:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.desire-title {
+  display: inline-block;
+  margin: 0;
+
+  color: #8e0e1a;
+  font-size: clamp(36px, 7svh, 70px);
+  line-height: clamp(28px, 5svh, 50px);
+  min-width: 50px;
+  outline: none;
+  vertical-align: middle;
+
+  text-shadow:
+    0 3px 20px red,
+    0 0 20px red,
+    0 0 10px orange,
+    4px -5px 6px yellow,
+    -4px -10px 10px yellow,
+    0 -10px 30px yellow;
+  animation: 2s Blazing infinite alternate linear;
+}
+
+@keyframes Blazing {
+  0% {
+    text-shadow:
+      0 3px 20px red,
+      0 0 20px red,
+      0 0 10px orange,
+      0 0 0 yellow,
+      0 0 5px yellow,
+      -2px -5px 5px yellow,
+      4px -10px 10px yellow;
+  }
+  25% {
+    text-shadow:
+      0 3px 20px red,
+      0 0 30px red,
+      0 0 20px orange,
+      0 0 5px yellow,
+      -2px -5px 5px yellow,
+      3px -10px 10px yellow,
+      -4px -15px 20px yellow;
+  }
+  50% {
+    text-shadow:
+      0 3px 20px red,
+      0 0 20px red,
+      0 -5px 10px orange,
+      -2px -5px 5px yellow,
+      3px -10px 10px yellow,
+      -4px -15px 20px yellow,
+      2px -20px 30px rgba(255, 255, 0, 0.5);
+  }
+  75% {
+    text-shadow:
+      0 3px 20px red,
+      0 0 20px red,
+      0 -5px 10px orange,
+      3px -5px 5px yellow,
+      -4px -10px 10px yellow,
+      2px -20px 30px rgba(255, 255, 0, 0.5),
+      0px -25px 40px rgba(255, 255, 0, 0);
+  }
+  100% {
+    text-shadow:
+      0 3px 20px red,
+      0 0 20px red,
+      0 0 10px orange,
+      0 0 0 yellow,
+      0 0 5px yellow,
+      -2px -5px 5px yellow,
+      4px -10px 10px yellow;
+  }
+}
