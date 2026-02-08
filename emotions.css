@@ -1,12 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 
-* {
-  box-sizing: border-box;
+.audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-body {
+* {
   margin: 0;
-  font-family: "Audiowide", sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: black;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: "Arial", sans-serif;
+  min-height: 100vh;
+  position: relative;
   scroll-behavior: smooth;
 }
 
@@ -14,9 +25,401 @@ html {
   scroll-snap-type: y mandatory;
 }
 
-.page-section {
+.page-section,
+.section {
+  position: relative;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+.page-section > *,
+.section > * {
+  position: relative;
+  z-index: 3;
+}
+
+.page-section::before,
+.section:not(#landing-page)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: clamp(90px, 16svh, 180px);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.35)
+  );
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.page-section::after,
+.section:not(#landing-page)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(90px, 16svh, 180px);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.35)
+  );
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.starfield-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 5;
+}
+
+.starfield {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  position: absolute;
+  bottom: -50px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow:
+    0 0 10px white,
+    0 0 20px white;
+  clip-path: polygon(
+    50% 0%,
+    60% 40%,
+    100% 50%,
+    60% 60%,
+    50% 100%,
+    40% 60%,
+    0% 50%,
+    40% 40%
+  );
+}
+
+.starfield::before,
+.starfield::after {
+  display: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.fade {
+  position: absolute;
+  width: 100%;
+  height: 60vh;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(180deg, black 0%, transparent 100%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Landing Page Section */
+#landing-page {
+  background: transparent;
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Seamless transition gradient at bottom of landing page */
+#landing-page::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent 0%, #0a0a0a 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.landing-container {
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-wrapper {
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-family: "Audiowide", sans-serif;
+  font-size: clamp(40px, 10vw, 100px);
+  margin: 0;
+  color: white;
+  position: relative;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.5),
+      0 0 30px #c0c0c0;
+  }
+  to {
+    text-shadow:
+      0 0 30px rgba(255, 255, 255, 0.8),
+      0 0 40px rgba(211, 211, 211, 0.6),
+      0 0 50px rgba(229, 228, 226, 0.4);
+  }
+}
+
+.hero-subtitle {
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 300;
+  margin: 20px 0 40px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards 0.5s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 3s ease forwards 1s;
+}
+
+.cta-button {
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  background: transparent;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid white;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:hover {
+  background: white;
+  color: #1a1a2e;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.cta-button.outline {
+  border: 2px solid white;
+}
+
+.cta-button.outline:hover {
+  background: white;
+  color: #1a1a2e;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Anger Page Section */
+#anger-page {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background-image: url("images/anger-bg-1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 400px;
+}
+
+/* Seamless transition gradient at top of anger section */
+#anger-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+
+  pointer-events: none;
+  z-index: 4;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.anger {
+  font-family: "Audiowide", sans-serif;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 0.3rem;
+  z-index: 3; /* ABOVE THE CANVAS */
+  animation:
+    angerPulse 0.15s ease-in-out infinite,
+    angerGlow 2s ease-in-out infinite;
+}
+
+.crawl-anger {
+  position: absolute;
+  top: 100%;
+  width: 55%;
+  max-width: 600px;
+  transform-origin: 50% 0%;
+  animation:
+    crawl-love 150s linear infinite,
+    fade-out 27s linear forwards;
+  opacity: 1;
+  z-index: 3;
+  animation-play-state: paused;
+}
+
+#anger-page.is-active .crawl-anger {
+  animation-play-state: running;
+}
+
+.crawl-anger .anger-text {
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 160%;
+  font-weight: 600;
+  letter-spacing: 4px;
+  line-height: 150%;
+  color: #8e0e1a;
+  text-align: center;
+}
+
+@keyframes crawl-anger {
+  0% {
+    top: 100%;
+    transform: translateX(-50%) rotateX(25deg) translateZ(0);
+  }
+
+  100% {
+    top: -2000px;
+    transform: translateX(-50%) rotateX(25deg) translateZ(-1200px);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes angerPulse {
+  /*  micro-movements left and right */
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  20% {
+    transform: translate(-50.5%, -50%) rotate(-0.5deg);
+  }
+  40% {
+    transform: translate(-49.5%, -50%) rotate(0.5deg);
+  }
+  60% {
+    transform: translate(-50.3%, -50.2%) rotate(-0.3deg);
+  }
+  80% {
+    transform: translate(-49.7%, -49.8%) rotate(0.3deg);
+  }
+}
+
+@keyframes angerGlow {
+  /* Slow glow pulse  */
+  0%,
+  100% {
+    text-shadow: 0 0 10px red;
+  }
+  50% {
+    text-shadow:
+      0 0 30px red,
+      0 0 60px rgba(255, 0, 0, 0.5);
+  }
 }
 
 /* PAGE INTRODUCTION */
@@ -34,6 +437,43 @@ html {
   perspective: 400px;
   text-align: justify;
   overflow: hidden;
+}
+
+.star-wars-audio-controls {
+  position: absolute;
+  top: clamp(16px, 4svh, 32px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+.audio-btn {
+  border: 2px solid #feda4a;
+  color: #feda4a;
+  background: transparent;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-family: "Audiowide", sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+  box-shadow: 0 0 10px rgba(254, 218, 74, 0.35);
+}
+
+.audio-btn:hover {
+  background: rgba(254, 218, 74, 0.1);
+  box-shadow: 0 0 18px rgba(254, 218, 74, 0.6);
+  transform: translateY(-1px);
+}
+
+.audio-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0 8px rgba(254, 218, 74, 0.4);
 }
 
 .star-wars::after {
@@ -61,6 +501,11 @@ html {
   max-width: 800px;
   transform-origin: 50% 0%;
   animation: crawl 150s linear forwards;
+  animation-play-state: paused;
+}
+
+.star-wars.is-active .crawl {
+  animation-play-state: running;
 }
 
 .crawl > .title {
@@ -116,6 +561,7 @@ html {
   gap: 24px;
   perspective: 400px;
   overflow: hidden;
+  z-index: 1;
 }
 
 .love::before {
@@ -175,8 +621,11 @@ html {
   width: min(40vw, 32svh);
   height: auto;
   opacity: 0;
+  z-index: 3;
+}
+
+.love.show-gif .love-gif {
   animation: gif-in 2s ease forwards;
-  animation-delay: 27s;
 }
 
 .crawl-love {
@@ -347,6 +796,7 @@ html {
   gap: 24px;
   perspective: 400px;
   overflow: hidden;
+  z-index: 1;
 }
 
 .desire::before {
@@ -408,9 +858,11 @@ html {
   width: min(28vw, 26svh);
   height: auto;
   opacity: 0;
-  animation: freaky-in 1.6s ease forwards;
-  animation-delay: 40s;
   z-index: 2;
+}
+
+.desire.show-gif .freaky-media {
+  animation: freaky-in 1.6s ease forwards;
 }
 
 .freaky-left {

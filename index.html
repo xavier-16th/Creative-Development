@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the emotions</title>
     <link rel="stylesheet" href="emotions.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,10 +11,41 @@
       href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
       rel="stylesheet"
     />
-    <title>Emotions War</title>
   </head>
   <body>
+    <div class="starfield"></div>
+
+    <div class="fade"></div>
+
+    <section id="landing-page" class="section">
+      <div class="landing-container">
+        <div class="title-wrapper">
+          <h1 class="main-title glitch" data-text="THE EMOTIONS">
+            The Emotions
+          </h1>
+        </div>
+
+        <div class="navigation-buttons fade-in-delay">
+          <a href="#home" class="cta-button">Home</a>
+          <a href="#about" class="cta-button outline">About</a>
+        </div>
+        <div class="scroll-indicator">
+          <span></span>
+        </div>
+      </div>
+    </section>
+
     <section class="star-wars page-section">
+      <audio
+        id="star-wars-audio"
+        src="audio/Star-Wars-Main-Theme-(Full).mp3"
+        preload="auto"
+      ></audio>
+      <div class="star-wars-audio-controls">
+        <button type="button" class="audio-btn" id="star-wars-play">
+          Play music
+        </button>
+      </div>
       <div class="crawl">
         <div class="jedi-hp">
           <h1 class="hp-title">The return of the emotion</h1>
@@ -32,10 +64,11 @@
         </div>
       </div>
     </section>
+
     <div class="Arrow-down-hp">
       <img src="images/Arrow-down.svg" alt="arrow down" class="arrow-img" />
     </div>
-    <div class="love page-section">
+    <section class="love page-section">
       <h2 class="love-title">Master Love</h2>
       <div class="crawl-love">
         <p class="love-text">
@@ -102,21 +135,22 @@
       <div class="arrow-down-love">
         <img src="images/Arrow-down.svg" alt="arrow down" class="arrow-img" />
       </div>
-    </div>
-    <div class="desire page-section">
+    </section>
+
+    <section class="desire page-section">
       <div class="dark-fire">
         <h2 class="desire-title">Padawan Desire</h2>
       </div>
       <div class="crawl-desire">
         <p class="desire-text">
           Padawan Desire is a young and passionate Jedi apprentice who is still
-          learning to control their emotions. They are driven by a deep longing
-          for connection and understanding, which sometimes leads them down a
+          learning to control his emotions. He is driven by a deep longing for
+          connection and understanding, which sometimes leads him down a
           dangerous path. Padawan Desire's lightsaber glows with a fiery red
-          hue, reflecting the intensity of their emotions. Despite their
-          struggles, Padawan Desire is determined to find balance within
-          themselves and harness the power of desire for good, hoping to one day
-          become a powerful Jedi Knight like Master Love.
+          hue, reflecting the intensity of his emotions. Despite his struggles,
+          Padawan Desire is determined to find balance within himself and
+          harness the power of desire for good, hoping to one day become a
+          powerful Jedi Knight like Master Love.
         </p>
       </div>
       <img
@@ -131,13 +165,31 @@
       />
       <div class="arrow-down-desire">
         <img
-          src="images\Arrow down-red.svg"
+          src="images/Arrow down-red.svg"
           alt="arrow down"
           class="arrow-img2"
         />
       </div>
-    </div>
-    <div id="app"></div>
+    </section>
+
+    <section id="anger-page" class="section">
+      <canvas id="canvas"></canvas>
+      <div class="anger">ANGER</div>
+
+      <div class="crawl-anger">
+        <p class="anger-text">
+          Darth Anger is a formidable Sith Lord who has fully embraced the dark
+          side of emotions. Consumed by rage and hatred, Darth Anger wields a
+          crimson lightsaber that crackles with raw power. He is a master of
+          manipulation and fear, using his intense emotions to dominate and
+          control others. Darth Anger's ultimate goal is to spread chaos and
+          destruction across the galaxy, believing that only through anger can
+          true strength be achieved. However, deep down, there may still be a
+          glimmer of hope for redemption.
+        </p>
+      </div>
+    </section>
+
     <script type="module" src="emotions.js"></script>
   </body>
 </html>
